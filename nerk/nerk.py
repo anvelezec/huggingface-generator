@@ -21,7 +21,7 @@ import logging
 import datasets
 
 
-_CITATION = "Berrio S, Velez andres (2020)"
+_CITATION = "Berrio S, Velez Andres (2020)"
 
 
 _DESCRIPTION = "This dataset aims to dispose information to train a named entity recognition model \
