@@ -27,7 +27,7 @@ _CITATION = "Berrio S, Velez Andres (2020)"
 _DESCRIPTION = "This dataset aims to dispose information to train a named entity recognition model \
     with focus in names, last names, location entities in a latin context "
 
-_URL = "nerk/"
+_URL = "data/"
 _TRAINING_FILE = "train.txt"
 _DEV_FILE = "valid.txt"
 _TEST_FILE = "test.txt"
