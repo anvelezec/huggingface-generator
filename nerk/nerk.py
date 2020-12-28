@@ -21,7 +21,7 @@ import logging
 import datasets
 
 
-_CITATION = "Berrio S, Velez Andres (2020)"
+_CITATION = "Berrio S, Velez A (2020)"
 
 
 _DESCRIPTION = "This dataset aims to dispose information to train a named entity recognition model \
@@ -29,7 +29,7 @@ _DESCRIPTION = "This dataset aims to dispose information to train a named entity
 
 _URL = "data/"
 _TRAINING_FILE = "train.txt"
-_DEV_FILE = "valid.txt"
+_DEV_FILE = "dev.txt"
 _TEST_FILE = "test.txt"
 
 
@@ -46,10 +46,10 @@ class NerKConfig(datasets.BuilderConfig):
 
 
 class NerK(datasets.GeneratorBasedBuilder):
-    """Conll2003 dataset."""
+    """NerK2020 dataset."""
 
     BUILDER_CONFIGS = [
-        NerKConfig(name="Ner_Konecta", version=datasets.Version("1.0.0"), description="Ner_Konecta"),
+        NerKConfig(name="NerKonecta", version=datasets.Version("1.0.0"), description="NerKonecta"),
     ]
 
     def _info(self):
@@ -65,12 +65,8 @@ class NerK(datasets.GeneratorBasedBuilder):
                                 "O",
                                 "B-PER",
                                 "I-PER",
-                                "B-ORG",
-                                "I-ORG",
                                 "B-LOC",
                                 "I-LOC",
-                                "B-MISC",
-                                "I-MISC",
                             ]
                         )
                     ),
@@ -98,7 +94,7 @@ class NerK(datasets.GeneratorBasedBuilder):
 
     def _generate_examples(self, filepath):
         logging.info("Generating examples from = %s", filepath)
-        with open(filepath, encoding="utf-8") as f:
+        with open(filepath, encoding="latin1") as f:
             guid = 0
             tokens = []
             ner_tags = []
@@ -116,8 +112,8 @@ class NerK(datasets.GeneratorBasedBuilder):
                 else:
                     # ner_k tokens are space separated
                     splits = line.split(" ")
-                    tokens.append(splits[1])
-                    ner_tags.append(splits[2].rstrip())
+                    tokens.append(splits[0])
+                    ner_tags.append(splits[1].replace("\n", "").rstrip())
             # last example
             yield guid, {
                 "id": str(guid),
