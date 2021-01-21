@@ -80,15 +80,11 @@ class NerK(datasets.GeneratorBasedBuilder):
     def _split_generators(self, dl_manager):
         """Returns SplitGenerators."""
         urls_to_download = {
-            "train": _URL + _TRAINING_FILE,
-            "dev": _URL + _DEV_FILE,
             "test": _URL + _TEST_FILE,
         }
         downloaded_files = dl_manager.extract(urls_to_download)
 
         return [
-            datasets.SplitGenerator(name=datasets.Split.TRAIN, gen_kwargs={"filepath": downloaded_files["train"]}),
-            datasets.SplitGenerator(name=datasets.Split.VALIDATION, gen_kwargs={"filepath": downloaded_files["dev"]}),
             datasets.SplitGenerator(name=datasets.Split.TEST, gen_kwargs={"filepath": downloaded_files["test"]}),
         ]
 
