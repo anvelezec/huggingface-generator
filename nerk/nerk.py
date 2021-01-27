@@ -111,9 +111,12 @@ class NerK(datasets.GeneratorBasedBuilder):
                         ner_tags = []
                 else:
                     # ner_k tokens are space separated
-                    splits = line.split(" ")
-                    tokens.append(splits[0])
-                    ner_tags.append(splits[1].replace("\n", "").rstrip())
+                    try:
+                        splits = line.split(" ")
+                        tokens.append(splits[0])
+                        ner_tags.append(splits[1].replace("\n", "").rstrip())
+                    except:
+                        print(splits)
             # last example
             yield guid, {
                 "id": str(guid),
