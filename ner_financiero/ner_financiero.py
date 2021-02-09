@@ -42,14 +42,14 @@ class FinancieroConfig(datasets.BuilderConfig):
         Args:
           **kwargs: keyword arguments forwarded to super.
         """
-        super(NerKConfig, self).__init__(**kwargs)
+        super(FinancieroConfig, self).__init__(**kwargs)
 
 
 class Financiero(datasets.GeneratorBasedBuilder):
     """Finaniciero dataset."""
 
     BUILDER_CONFIGS = [
-        NerKConfig(name="Financiero", version=datasets.Version("1.0.0"), description="Financiero"),
+        FinancieroConfig(name="Financiero", version=datasets.Version("1.0.0"), description="Financiero"),
     ]
 
     def _info(self):
